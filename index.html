@@ -3,851 +3,419 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduLingo - Break Language Barriers in Education</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+    <title>EduLang - Breaking Language Barriers in Education</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        :root {
+            --bg: #0A0A0B;
+            --bg2: #111113;
+            --bg3: #18181B;
+            --accent: #10B981;
+            --border: rgba(255, 255, 255, 0.07);
+            --text: #fff;
+            --muted: #A1A1AA;
+            --dim: #52525B;
+        }
         body {
             margin: 0;
             font-family: 'Inter', sans-serif;
-            background-color: #0A0A0B;
-            color: #A1A1AA;
-            overflow-x: hidden;
+            background-color: var(--bg);
+            color: var(--text);
         }
         a {
-            color: inherit;
+            color: var(--accent);
             text-decoration: none;
         }
         .navbar {
             position: fixed;
             top: 0;
             width: 100%;
+            padding: 1rem 2rem;
             background: rgba(10, 10, 11, 0.8);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(10px);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 2rem;
             z-index: 1000;
-            transition: top 0.3s;
         }
-        .navbar .logo {
-            font-weight: 800;
-            color: #FFFFFF;
-        }
-        .navbar .logo span {
-            color: #10B981;
-        }
-        .navbar .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-        .navbar .nav-links a {
-            color: #FFFFFF;
-            font-weight: 700;
-        }
-        .navbar .cta-buttons {
-            display: flex;
-            gap: 1rem;
-        }
-        .navbar .cta-buttons .ghost {
-            border: 1px solid #FFFFFF;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            color: #FFFFFF;
-            background: transparent;
-            transition: transform 0.3s;
-        }
-        .navbar .cta-buttons .primary {
-            background: linear-gradient(135deg, #10B981, #10B98199);
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            color: #FFFFFF;
-            transition: transform 0.3s;
-        }
-        .navbar .cta-buttons .ghost:hover,
-        .navbar .cta-buttons .primary:hover {
-            transform: scale(1.02);
+        .navbar a {
+            margin: 0 1rem;
         }
         .hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+            display: grid;
+            grid-template-columns: 55% 45%;
+            padding: 5rem 2rem;
             align-items: center;
-            position: relative;
-            text-align: center;
-            overflow: hidden;
-        }
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml;base64,...') repeat;
-            opacity: 0.05;
-        }
-        .hero .badge {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 0.5rem 1rem;
-            border-radius: 9999px;
-            color: #10B981;
-            margin-bottom: 1rem;
+            min-height: 100vh;
         }
         .hero h1 {
-            font-size: clamp(48px, 8vw, 96px);
-            font-weight: 800;
-            line-height: 1.05;
-            letter-spacing: -3px;
-            color: #FFFFFF;
-            margin: 0;
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            line-height: 1.2;
         }
         .hero h1 span {
-            background: linear-gradient(135deg, #10B981, #10B98199);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-style: italic;
+            color: var(--accent);
         }
-        .hero p {
-            font-size: 16px;
-            line-height: 1.7;
-            color: #A1A1AA;
-            margin: 1rem 0;
-        }
-        .hero .buttons {
-            display: flex;
-            gap: 1rem;
-            margin: 1rem 0;
-        }
-        .hero .buttons .primary,
-        .hero .buttons .secondary {
-            padding: 0.75rem 1.5rem;
-            border-radius: 5px;
-            transition: transform 0.3s;
-        }
-        .hero .buttons .primary {
-            background: linear-gradient(135deg, #10B981, #10B98199);
-            color: #FFFFFF;
-        }
-        .hero .buttons .secondary {
-            border: 1px solid #FFFFFF;
-            color: #FFFFFF;
-            background: transparent;
-        }
-        .hero .buttons .primary:hover,
-        .hero .buttons .secondary:hover {
-            transform: scale(1.02);
-        }
-        .hero .trust-items {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
+        .hero .cta {
+            display: inline-block;
             margin-top: 1rem;
+            padding: 0.75rem 1.5rem;
+            background-color: var(--accent);
+            color: var(--bg);
+            border-radius: 5px;
+            transition: background-color 0.3s;
         }
-        .hero .trust-items .item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: #A1A1AA;
+        .hero .cta:hover {
+            background-color: var(--bg3);
         }
-        .hero .mockup {
-            margin-top: 2rem;
-            width: 80%;
-            max-width: 600px;
-            height: 300px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 10px;
-            position: relative;
+        .ticker {
+            background-color: var(--bg2);
+            padding: 1rem 0;
             overflow: hidden;
+            white-space: nowrap;
         }
-        .hero .mockup::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml;base64,...') repeat;
-            opacity: 0.05;
+        .ticker span {
+            display: inline-block;
+            padding: 0 2rem;
+            animation: ticker 20s linear infinite;
         }
-        .social-proof {
-            padding: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.06);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-            text-align: center;
-            color: #A1A1AA;
+        @keyframes ticker {
+            from { transform: translateX(100%); }
+            to { transform: translateX(-100%); }
         }
-        .social-proof span {
-            color: #FFFFFF;
-        }
-        .social-proof .colleges {
-            margin-top: 0.5rem;
-            color: #52525B;
-        }
-        .problem-section, .solution-section, .features-grid, .how-it-works, .testimonials, .pricing, .faq, .final-cta, .footer {
-            padding: 4rem 2rem;
-            text-align: center;
-        }
-        .problem-section .content, .solution-section .content, .features-grid .content, .how-it-works .content, .testimonials .content, .pricing .content, .faq .content, .final-cta .content, .footer .content {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .problem-section .content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 2rem;
-        }
-        .problem-section .content .left {
-            flex: 1;
-            color: #FFFFFF;
-            font-size: 24px;
-            font-weight: 700;
-        }
-        .problem-section .content .right {
-            flex: 2;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-        .problem-section .content .right .pain-point {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: rgba(255, 255, 255, 0.03);
-            border-left: 4px solid #FF5733;
-            padding: 1rem;
-            border-radius: 5px;
-        }
-        .solution-section .content {
-            display: flex;
-            justify-content: space-between;
-            gap: 2rem;
-        }
-        .solution-section .content .feature {
-            flex: 1;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 10px;
-            padding: 2rem;
-            transition: transform 0.3s;
-        }
-        .solution-section .content .feature:hover {
-            transform: translateY(-4px);
-        }
-        .solution-section .content .feature .icon {
-            background: linear-gradient(135deg, #10B981, #10B98199);
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
-        .solution-section .content .feature .icon i {
-            color: #FFFFFF;
-            font-size: 24px;
-        }
-        .solution-section .content .feature h3 {
-            font-size: 24px;
-            font-weight: 700;
-            color: #FFFFFF;
-            margin: 0;
-        }
-        .solution-section .content .feature p {
-            margin-top: 0.5rem;
-            color: #A1A1AA;
-        }
-        .features-grid .content {
+        .features {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-        .features-grid .content .feature-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 10px;
-            padding: 2rem;
-            transition: transform 0.3s, border-color 0.3s;
-        }
-        .features-grid .content .feature-card:hover {
-            transform: translateY(-4px);
-            border-color: #10B981;
-        }
-        .features-grid .content .feature-card .icon {
-            font-size: 24px;
-            color: #10B981;
-            margin-bottom: 1rem;
-        }
-        .features-grid .content .feature-card h3 {
-            font-size: 20px;
-            font-weight: 700;
-            color: #FFFFFF;
-            margin: 0;
-        }
-        .features-grid .content .feature-card p {
-            margin-top: 0.5rem;
-            color: #A1A1AA;
-        }
-        .how-it-works .content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 2rem;
-        }
-        .how-it-works .content .step {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            grid-template-columns: repeat(12, 1fr);
             gap: 1rem;
+            padding: 5rem 2rem;
         }
-        .how-it-works .content .step .number {
-            background: linear-gradient(135deg, #10B981, #10B98199);
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #FFFFFF;
-            font-weight: 700;
-        }
-        .how-it-works .content .step h3 {
-            font-size: 20px;
-            font-weight: 700;
-            color: #FFFFFF;
-            margin: 0;
-        }
-        .how-it-works .content .step p {
-            color: #A1A1AA;
-        }
-        .testimonials .content {
-            display: flex;
-            justify-content: space-between;
-            gap: 2rem;
-        }
-        .testimonials .content .testimonial {
-            flex: 1;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 10px;
+        .feature-card {
+            grid-column: span 3;
+            background-color: var(--bg3);
             padding: 2rem;
-            transition: transform 0.3s;
-        }
-        .testimonials .content .testimonial:hover {
-            transform: translateY(-4px);
-        }
-        .testimonials .content .testimonial .stars {
-            color: #FFD700;
-            margin-bottom: 1rem;
-        }
-        .testimonials .content .testimonial .quote {
-            color: #A1A1AA;
-            margin-bottom: 1rem;
-        }
-        .testimonials .content .testimonial .avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: #10B981;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #FFFFFF;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-        .testimonials .content .testimonial .name {
-            font-weight: 700;
-            color: #FFFFFF;
-        }
-        .testimonials .content .testimonial .role {
-            color: #A1A1AA;
-        }
-        .pricing .content {
-            display: flex;
-            justify-content: space-between;
-            gap: 2rem;
-        }
-        .pricing .content .pricing-card {
-            flex: 1;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.06);
             border-radius: 10px;
-            padding: 2rem;
             transition: transform 0.3s;
         }
-        .pricing .content .pricing-card:hover {
-            transform: translateY(-4px);
+        .feature-card:hover {
+            transform: scale(1.05);
         }
-        .pricing .content .pricing-card.premium {
-            border-color: #10B981;
-            position: relative;
-        }
-        .pricing .content .pricing-card.premium::before {
-            content: 'Most Popular';
-            position: absolute;
-            top: -10px;
-            right: -10px;
-            background: #10B981;
-            color: #FFFFFF;
-            padding: 0.25rem 0.5rem;
-            border-radius: 5px;
-            font-size: 12px;
-        }
-        .pricing .content .pricing-card h3 {
-            font-size: 24px;
-            font-weight: 700;
-            color: #FFFFFF;
-            margin: 0;
-        }
-        .pricing .content .pricing-card .price {
-            font-size: 32px;
-            font-weight: 800;
-            color: #10B981;
-            margin: 1rem 0;
-        }
-        .pricing .content .pricing-card .features {
+        .stats {
+            background-color: var(--bg2);
+            padding: 5rem 2rem;
             display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-            color: #A1A1AA;
+            justify-content: space-around;
         }
-        .pricing .content .pricing-card .features .feature {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        .pricing .content .pricing-card .cta-button {
-            margin-top: 1rem;
-            padding: 0.75rem 1.5rem;
-            border-radius: 5px;
-            background: linear-gradient(135deg, #10B981, #10B98199);
-            color: #FFFFFF;
-            transition: transform 0.3s;
-        }
-        .pricing .content .pricing-card .cta-button:hover {
-            transform: scale(1.02);
-        }
-        .faq .content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        .faq .content .faq-item {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 10px;
-            padding: 1rem;
-            margin-bottom: 1rem;
-            cursor: pointer;
-            transition: transform 0.3s;
-        }
-        .faq .content .faq-item:hover {
-            transform: translateY(-4px);
-        }
-        .faq .content .faq-item .question {
-            font-weight: 700;
-            color: #FFFFFF;
-            margin: 0;
-        }
-        .faq .content .faq-item .answer {
-            display: none;
-            margin-top: 0.5rem;
-            color: #A1A1AA;
-        }
-        .final-cta {
-            background: linear-gradient(135deg, #10B981, #10B98199);
-            padding: 4rem 2rem;
+        .stat {
             text-align: center;
-            color: #FFFFFF;
         }
-        .final-cta .content {
-            max-width: 800px;
-            margin: 0 auto;
+        .how-it-works {
+            padding: 5rem 2rem;
         }
-        .final-cta h2 {
-            font-size: 32px;
-            font-weight: 800;
-            margin: 0;
-        }
-        .final-cta p {
-            margin: 1rem 0;
-        }
-        .final-cta .cta-form {
+        .how-it-works .step {
             display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 1rem;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border);
         }
-        .final-cta .cta-form input {
-            padding: 0.75rem;
-            border-radius: 5px;
-            border: none;
-            outline: none;
-            width: 300px;
+        .how-it-works .step:hover {
+            padding-left: 1rem;
         }
-        .final-cta .cta-form button {
-            padding: 0.75rem 1.5rem;
-            border-radius: 5px;
-            background: #10B981;
-            color: #FFFFFF;
-            border: none;
-            cursor: pointer;
+        .testimonials {
+            display: flex;
+            justify-content: space-around;
+            padding: 5rem 2rem;
+        }
+        .testimonial-card {
+            background-color: var(--bg3);
+            padding: 2rem;
+            border-radius: 10px;
             transition: transform 0.3s;
         }
-        .final-cta .cta-form button:hover {
-            transform: scale(1.02);
+        .testimonial-card:hover {
+            transform: scale(1.05);
+        }
+        .pricing {
+            display: flex;
+            justify-content: space-around;
+            padding: 5rem 2rem;
+        }
+        .pricing-card {
+            background-color: var(--bg3);
+            padding: 2rem;
+            border-radius: 10px;
+            border: 2px solid var(--border);
+            transition: border-color 0.3s;
+        }
+        .pricing-card.premium {
+            border-color: var(--accent);
+        }
+        .faq {
+            padding: 5rem 2rem;
+        }
+        .faq-item {
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 0;
+            cursor: pointer;
+        }
+        .contact {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            padding: 5rem 2rem;
         }
         .footer {
-            background: rgba(10, 10, 11, 0.8);
-            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            background-color: var(--bg2);
             padding: 2rem;
-            color: #A1A1AA;
-        }
-        .footer .content {
             display: flex;
             justify-content: space-between;
-            gap: 2rem;
-        }
-        .footer .content .column {
-            flex: 1;
-        }
-        .footer .content .column h4 {
-            font-weight: 700;
-            color: #FFFFFF;
-            margin-bottom: 1rem;
-        }
-        .footer .content .column ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .footer .content .column ul li {
-            margin-bottom: 0.5rem;
-        }
-        .footer .content .column ul li a {
-            color: #A1A1AA;
-        }
-        .footer .bottom {
-            text-align: center;
-            margin-top: 2rem;
-            color: #52525B;
-        }
-        .footer .bottom span {
-            color: #FFFFFF;
-        }
-        .floating-orbs {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 200%;
-            height: 200%;
-            transform: translate(-50%, -50%);
-            overflow: hidden;
-            pointer-events: none;
-        }
-        .floating-orbs .orb {
-            position: absolute;
-            width: 400px;
-            height: 400px;
-            background: linear-gradient(135deg, #10B981, #10B98199);
-            border-radius: 50%;
-            filter: blur(100px);
-            animation: float 10s infinite ease-in-out;
-        }
-        .floating-orbs .orb:nth-child(1) {
-            top: 20%;
-            left: 30%;
-        }
-        .floating-orbs .orb:nth-child(2) {
-            top: 50%;
-            left: 70%;
-            animation-delay: 2s;
-        }
-        .floating-orbs .orb:nth-child(3) {
-            top: 80%;
-            left: 40%;
-            animation-delay: 4s;
-        }
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-20px);
-            }
+            align-items: center;
         }
     </style>
 </head>
 <body>
-    <div class="navbar">
-        <div class="logo">EduLingo<span>.</span></div>
+    <nav class="navbar">
+        <div class="logo">EduLang</div>
         <div class="nav-links">
             <a href="#features">Features</a>
             <a href="#pricing">Pricing</a>
-            <a href="#about">About</a>
-            <a href="#faq">FAQ</a>
+            <a href="#contact">Contact</a>
         </div>
-        <div class="cta-buttons">
-            <div class="ghost">Sign In</div>
-            <div class="primary">Get Early Access</div>
+        <div class="nav-buttons">
+            <a href="#" class="ghost-button">Login</a>
+            <a href="#" class="primary-button">Get Started</a>
         </div>
-    </div>
+    </nav>
     <section class="hero">
-        <div class="floating-orbs">
-            <div class="orb"></div>
-            <div class="orb"></div>
-            <div class="orb"></div>
+        <div class="hero-content">
+            <div class="eyebrow">AI-Powered EdTech for All</div>
+            <h1>Breaking Language Barriers in Education<br><span>Empowering students with AI-driven regional language explanations</span></h1>
+            <p>Making education accessible for all, one language at a time.</p>
+            <a href="#" class="cta">UBAID KUNDLIK</a>
         </div>
-        <div class="badge">AI-Powered • Language Inclusive • Student Approved</div>
-        <h1>Break Language Barriers in <span>Education</span></h1>
-        <p>Empower Tier 2/3 students with AI-driven explanations in their preferred regional languages.</p>
-        <div class="buttons">
-            <div class="primary">Get Started</div>
-            <div class="secondary">Learn More</div>
-        </div>
-        <div class="trust-items">
-            <div class="item"><i class="fas fa-check"></i> AI-Powered</div>
-            <div class="item"><i class="fas fa-check"></i> Language Inclusive</div>
-            <div class="item"><i class="fas fa-check"></i> Student Approved</div>
-        </div>
-        <div class="mockup"></div>
-    </section>
-    <section class="social-proof">
-        <span>Trusted by students from</span>
-        <div class="colleges">IIT Bombay • Pune University • Nagpur University • Mumbai University • Savitribai Phule Pune University</div>
-    </section>
-    <section class="problem-section">
-        <div class="content">
-            <div class="left">Many Tier 2/3 students struggle to understand educational concepts due to language barriers.</div>
-            <div class="right">
-                <div class="pain-point"><i class="fas fa-times"></i> Lack of resources in regional languages</div>
-                <div class="pain-point"><i class="fas fa-times"></i> Difficulty in grasping complex concepts</div>
-                <div class="pain-point"><i class="fas fa-times"></i> Limited access to quality education</div>
+        <div class="hero-image">
+            <div class="dark-panel">
+                <div class="grid-overlay"></div>
+                <div class="brand-name">EduLang</div>
+                <div class="scroll-indicator">Scroll</div>
             </div>
         </div>
     </section>
-    <section class="solution-section">
-        <div class="content">
-            <div class="feature">
-                <div class="icon"><i class="fas fa-robot"></i></div>
-                <h3>AI-Powered Explanations</h3>
-                <p>Get clear explanations in your preferred language.</p>
-            </div>
-            <div class="feature">
-                <div class="icon"><i class="fas fa-language"></i></div>
-                <h3>Multi-Language Support</h3>
-                <p>Supports Marathi, Hindi, Urdu, and simple English.</p>
-            </div>
-            <div class="feature">
-                <div class="icon"><i class="fas fa-upload"></i></div>
-                <h3>Easy Question Upload</h3>
-                <p>Upload questions effortlessly for instant help.</p>
-            </div>
+    <div class="ticker">
+        <span>AI-powered explanations ◆ Regional language support ◆ Easy question uploads ◆ Freemium model ◆ ₹149/month premium ◆ Trusted by students</span>
+    </div>
+    <section class="features" id="features">
+        <div class="feature-card">
+            <div class="icon"><i class="icon-ai"></i></div>
+            <h3>AI Explanations</h3>
+            <p>Get answers explained in regional languages.</p>
+        </div>
+        <div class="feature-card">
+            <div class="icon"><i class="icon-language"></i></div>
+            <h3>Multi-Language Support</h3>
+            <p>Supports Marathi, Hindi, Urdu, and simple English.</p>
+        </div>
+        <div class="feature-card">
+            <div class="icon"><i class="icon-upload"></i></div>
+            <h3>Easy Question Upload</h3>
+            <p>Upload your questions easily for quick solutions.</p>
         </div>
     </section>
-    <section class="features-grid">
-        <div class="content">
-            <div class="feature-card">
-                <div class="icon"><i class="fas fa-robot"></i></div>
-                <h3>AI-Powered Explanations</h3>
-                <p>Get clear explanations in your preferred language.</p>
-            </div>
-            <div class="feature-card">
-                <div class="icon"><i class="fas fa-language"></i></div>
-                <h3>Multi-Language Support</h3>
-                <p>Supports Marathi, Hindi, Urdu, and simple English.</p>
-            </div>
-            <div class="feature-card">
-                <div class="icon"><i class="fas fa-upload"></i></div>
-                <h3>Easy Question Upload</h3>
-                <p>Upload questions effortlessly for instant help.</p>
-            </div>
+    <section class="stats">
+        <div class="stat">
+            <div class="number">65%</div>
+            <div class="label">Prefer regional language</div>
+        </div>
+        <div class="stat">
+            <div class="number">₹149</div>
+            <div class="label">Monthly subscription</div>
+        </div>
+        <div class="stat">
+            <div class="number">3x</div>
+            <div class="label">Languages supported</div>
+        </div>
+        <div class="stat">
+            <div class="number">100+</div>
+            <div class="label">Questions answered daily</div>
         </div>
     </section>
     <section class="how-it-works">
-        <div class="content">
-            <div class="step">
-                <div class="number">1</div>
-                <h3>Upload Your Question</h3>
-                <p>Simply upload the question you need help with.</p>
-            </div>
-            <div class="step">
-                <div class="number">2</div>
-                <h3>Choose Your Language</h3>
-                <p>Select your preferred language for explanations.</p>
-            </div>
-            <div class="step">
-                <div class="number">3</div>
-                <h3>Get AI-Powered Help</h3>
-                <p>Receive clear and concise explanations instantly.</p>
-            </div>
+        <div class="step">
+            <div class="number">1</div>
+            <div class="title">Upload Your Question</div>
+            <div class="description">Simply upload the question you need help with.</div>
+        </div>
+        <div class="step">
+            <div class="number">2</div>
+            <div class="title">Select Language</div>
+            <div class="description">Choose your preferred language for explanation.</div>
+        </div>
+        <div class="step">
+            <div class="number">3</div>
+            <div class="title">Get AI Explanation</div>
+            <div class="description">Receive a detailed explanation in your chosen language.</div>
+        </div>
+        <div class="step">
+            <div class="number">4</div>
+            <div class="title">Understand and Learn</div>
+            <div class="description">Grasp the concept easily and effectively.</div>
         </div>
     </section>
     <section class="testimonials">
-        <div class="content">
-            <div class="testimonial">
-                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                <div class="quote">"EduLingo helped me understand complex concepts in Hindi, making my studies much easier."</div>
-                <div class="avatar">AS</div>
-                <div class="name">Amit Sharma</div>
-                <div class="role">Engineering Student, Mumbai</div>
-            </div>
-            <div class="testimonial">
-                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                <div class="quote">"The AI explanations in Marathi are a game-changer for my learning."</div>
-                <div class="avatar">PD</div>
-                <div class="name">Priya Deshmukh</div>
-                <div class="role">Diploma Student, Pune</div>
-            </div>
-            <div class="testimonial">
-                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                <div class="quote">"Finally, a platform that speaks my language and makes learning accessible."</div>
-                <div class="avatar">RV</div>
-                <div class="name">Rahul Verma</div>
-                <div class="role">B.Tech Student, Nagpur</div>
-            </div>
+        <div class="testimonial-card">
+            <div class="avatar">AS</div>
+            <div class="name">Amit Sharma</div>
+            <div class="role">Student</div>
+            <div class="quote">"EduLang has made learning so much easier for me!"</div>
+        </div>
+        <div class="testimonial-card">
+            <div class="avatar">PD</div>
+            <div class="name">Priya Desai</div>
+            <div class="role">Teacher</div>
+            <div class="quote">"My students understand concepts better with EduLang."</div>
+        </div>
+        <div class="testimonial-card">
+            <div class="avatar">RV</div>
+            <div class="name">Rahul Verma</div>
+            <div class="role">Parent</div>
+            <div class="quote">"A great tool for my kids to learn in their language."</div>
         </div>
     </section>
-    <section class="pricing">
-        <div class="content">
-            <div class="pricing-card">
-                <h3>Free</h3>
-                <div class="features">
-                    <div class="feature"><i class="fas fa-check"></i> Upload question</div>
-                    <div class="feature"><i class="fas fa-check"></i> Basic AI explanations</div>
-                    <div class="feature"><i class="fas fa-check"></i> Access to limited languages</div>
-                </div>
-                <div class="cta-button">Get Started</div>
-            </div>
-            <div class="pricing-card premium">
-                <h3>Premium</h3>
-                <div class="price">₹149/month</div>
-                <div class="features">
-                    <div class="feature"><i class="fas fa-check"></i> Advanced AI explanations</div>
-                    <div class="feature"><i class="fas fa-check"></i> Full language support</div>
-                    <div class="feature"><i class="fas fa-check"></i> Priority support</div>
-                    <div class="feature"><i class="fas fa-check"></i> Ad-free experience</div>
-                </div>
-                <div class="cta-button">Get Premium</div>
-            </div>
+    <section class="pricing" id="pricing">
+        <div class="pricing-card">
+            <h3>Free</h3>
+            <ul>
+                <li>Access to basic explanations</li>
+                <li>Limited language options</li>
+                <li>Community support</li>
+            </ul>
+        </div>
+        <div class="pricing-card premium">
+            <h3>Premium</h3>
+            <ul>
+                <li>Unlimited language support</li>
+                <li>Priority AI explanations</li>
+                <li>Access to all features</li>
+                <li>Dedicated support</li>
+                <li>Ad-free experience</li>
+            </ul>
+            <div class="price">₹149/month</div>
         </div>
     </section>
     <section class="faq">
-        <div class="content">
-            <div class="faq-item">
-                <div class="question">What languages are supported?</div>
-                <div class="answer">We support Marathi, Hindi, Urdu, and simple English.</div>
-            </div>
-            <div class="faq-item">
-                <div class="question">Is there a free version available?</div>
-                <div class="answer">Yes, we offer a freemium model with basic features.</div>
-            </div>
-            <div class="faq-item">
-                <div class="question">How does the AI work?</div>
-                <div class="answer">Our AI analyzes questions and provides explanations in your chosen language.</div>
-            </div>
-            <div class="faq-item">
-                <div class="question">How much does the premium subscription cost?</div>
-                <div class="answer">The premium subscription is priced at ₹149/month.</div>
-            </div>
+        <div class="faq-item">
+            <div class="question">What languages are supported?</div>
+            <div class="answer">We support Marathi, Hindi, Urdu, and simple English.</div>
+        </div>
+        <div class="faq-item">
+            <div class="question">How does the AI explanation work?</div>
+            <div class="answer">Our AI analyzes the question and provides explanations in the chosen language.</div>
+        </div>
+        <div class="faq-item">
+            <div class="question">Is there a free trial available?</div>
+            <div class="answer">Yes, we offer a free trial with limited features.</div>
+        </div>
+        <div class="faq-item">
+            <div class="question">Can I cancel my subscription anytime?</div>
+            <div class="answer">Yes, you can cancel your subscription at any time.</div>
         </div>
     </section>
-    <section class="final-cta">
-        <div class="content">
-            <h2>Join EduLingo Today</h2>
-            <p>Break language barriers and empower your education.</p>
-            <div class="cta-form">
-                <input type="email" placeholder="Enter your email">
-                <button>Get Early Access</button>
-            </div>
+    <section class="contact" id="contact">
+        <div class="contact-info">
+            <h2>Contact Us</h2>
+            <p>We'd love to hear from you. Reach out to us for any queries or support.</p>
         </div>
+        <form class="contact-form">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <button type="submit">Submit</button>
+        </form>
     </section>
     <footer class="footer">
-        <div class="content">
-            <div class="column">
-                <h4>EduLingo</h4>
-                <p>Break Language Barriers in Education.</p>
-            </div>
-            <div class="column">
-                <h4>Product</h4>
-                <ul>
-                    <li><a href="#">Features</a></li>
-                    <li><a href="#">Pricing</a></li>
-                    <li><a href="#">About</a></li>
-                </ul>
-            </div>
-            <div class="column">
-                <h4>Company</h4>
-                <ul>
-                    <li><a href="#">Careers</a></li>
-                    <li><a href="#">Blog</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-            </div>
-            <div class="column">
-                <h4>Connect</h4>
-                <ul>
-                    <li><a href="#">Twitter</a></li>
-                    <li><a href="#">LinkedIn</a></li>
-                    <li><a href="#">Facebook</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="bottom">
-            <span>&copy; 2023 EduLingo. All rights reserved. Made with ❤️ in India.</span>
+        <div class="footer-logo">EduLang</div>
+        <div class="footer-copyright">© 2023 EduLang. All rights reserved.</div>
+        <div class="footer-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
         </div>
     </footer>
     <script>
-        // Intersection Observer for animations
+        // Custom cursor
+        const cursor = document.createElement('div');
+        const cursorRing = document.createElement('div');
+        cursor.style.width = cursor.style.height = '12px';
+        cursor.style.background = 'var(--accent)';
+        cursor.style.borderRadius = '50%';
+        cursor.style.position = 'fixed';
+        cursor.style.pointerEvents = 'none';
+        cursor.style.zIndex = '10000';
+        cursorRing.style.width = cursorRing.style.height = '36px';
+        cursorRing.style.border = '2px solid var(--accent)';
+        cursorRing.style.borderRadius = '50%';
+        cursorRing.style.position = 'fixed';
+        cursorRing.style.pointerEvents = 'none';
+        cursorRing.style.zIndex = '9999';
+        document.body.appendChild(cursor);
+        document.body.appendChild(cursorRing);
+        document.addEventListener('mousemove', e => {
+            cursor.style.left = `${e.clientX}px`;
+            cursor.style.top = `${e.clientY}px`;
+            cursorRing.style.left = `${e.clientX}px`;
+            cursorRing.style.top = `${e.clientY}px`;
+        });
+
+        // IntersectionObserver reveal
+        const revealElements = document.querySelectorAll('.reveal');
         const observer = new IntersectionObserver(entries => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('animate');
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        revealElements.forEach(el => observer.observe(el));
+
+        // Animated stat counters
+        const counters = document.querySelectorAll('.stat .number');
+        counters.forEach(counter => {
+            const updateCount = () => {
+                const target = +counter.getAttribute('data-target');
+                const count = +counter.innerText;
+                const speed = 200;
+                const increment = target / speed;
+                if (count < target) {
+                    counter.innerText = Math.ceil(count + increment);
+                    setTimeout(updateCount, 1);
+                } else {
+                    counter.innerText = target;
+                }
+            };
+            updateCount();
+        });
+
+        // FAQ accordion
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            item.addEventListener('click', () => {
+                item.classList.toggle('open');
+                const answer = item.querySelector('.answer');
+                if (item.classList.contains('open')) {
+                    answer.style.maxHeight = answer.scrollHeight + 'px';
+                } else {
+                    answer.style.maxHeight = 0;
                 }
             });
         });
 
-        document.querySelectorAll('.content').forEach(section => {
-            observer.observe(section);
-        });
-
-        // Navbar hide/show on scroll
-        let lastScrollTop = 0;
+        // Navbar shrink on scroll
         const navbar = document.querySelector('.navbar');
         window.addEventListener('scroll', () => {
-            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            if (scrollTop > lastScrollTop) {
-                navbar.style.top = '-80px';
+            if (window.scrollY > 50) {
+                navbar.classList.add('shrink');
             } else {
-                navbar.style.top = '0';
+                navbar.classList.remove('shrink');
             }
-            lastScrollTop = scrollTop;
-        });
-
-        // FAQ accordion
-        document.querySelectorAll('.faq-item').forEach(item => {
-            item.addEventListener('click', () => {
-                const answer = item.querySelector('.answer');
-                const isOpen = answer.style.display === 'block';
-                document.querySelectorAll('.faq-item .answer').forEach(a => a.style.display = 'none');
-                answer.style.display = isOpen ? 'none' : 'block';
-            });
-        });
-
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
         });
     </script>
 </body>
