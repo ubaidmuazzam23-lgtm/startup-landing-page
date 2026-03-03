@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduLang AI - AI-Powered Regional Language Explanations</title>
+    <title>EduLang AI</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <style>
         body {
             margin: 0;
             font-family: 'Inter', sans-serif;
             background-color: #0A0A0B;
-            color: rgba(255, 255, 255, 0.9);
+            color: #FFFFFF;
             overflow-x: hidden;
         }
         .navbar {
@@ -20,256 +20,395 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px;
+            padding: 15px 30px;
+            backdrop-filter: blur(20px);
             background: rgba(255, 255, 255, 0.04);
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(20px);
-            z-index: 10;
+            z-index: 1000;
         }
         .navbar-logo {
             font-size: 24px;
             font-weight: bold;
             color: #10B981;
         }
-        .btn-primary, .btn-secondary {
+        .cta-button {
+            background-color: #10B981;
+            color: #0A0A0B;
             padding: 10px 20px;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-            text-decoration: none;
-            transition: background 0.3s;
-        }
-        .btn-primary {
-            background: linear-gradient(45deg, #10B981, #10B981aa);
             border: none;
-            color: #fff;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
         }
-        .btn-primary:hover {
-            background: #10B981;
-        }
-        .btn-secondary {
-            background: transparent;
-            border: 1px solid #10B981;
-            color: #10B981;
-        }
-        .btn-secondary:hover {
-            background: rgba(16, 185, 129, 0.1);
+        .cta-button:hover {
+            background-color: #0E8F6C;
+            transform: scale(1.05);
         }
         .hero {
-            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
             text-align: center;
-            padding: 100px 20px;
+            position: relative;
+            overflow: hidden;
         }
-        .hero::before {
-            content: '';
+        .hero-heading {
+            font-size: 48px;
+            background: linear-gradient(90deg, #10B981, #0E8F6C);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientAnimation 5s ease infinite;
+        }
+        @keyframes gradientAnimation {
+            0% { background-position: 0%; }
+            100% { background-position: 100%; }
+        }
+        .hero-buttons {
+            margin-top: 20px;
+        }
+        .hero .cta-button {
+            margin: 0 10px;
+        }
+        .hero-blob {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle at center, rgba(16, 185, 129, 0.5), transparent 70%);
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, #10B981, transparent);
             border-radius: 50%;
-            animation: pulse 5s infinite;
+            animation: blobAnimation 10s infinite;
             z-index: -1;
         }
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
-        .hero h1 {
-            font-size: 72px;
-            font-weight: bold;
-            background: linear-gradient(to right, #10B981, #10B981aa);
-            -webkit-background-clip: text;
-            color: transparent;
+        @keyframes blobAnimation {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.2); }
         }
         .trust-badges {
             display: flex;
             justify-content: center;
-            gap: 20px;
-            margin-top: 20px;
-        }
-        .trust-badge {
-            font-size: 18px;
-            color: #10B981;
-        }
-        .section {
-            padding: 60px 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .card {
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(20px);
-            padding: 20px;
-            border-radius: 10px;
-            margin: 20px;
-            width: 300px;
-        }
-        .card-dark {
-            border: 1px solid #ff4d4d;
-        }
-        .card-glow {
-            box-shadow: 0 0 10px #10B981;
-        }
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
             margin-top: 40px;
         }
-        .feature-icon {
-            font-size: 40px;
+        .trust-badge {
+            margin: 0 10px;
+            font-size: 14px;
+            color: #10B981;
+            border: 1px solid #10B981;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+        .section {
+            padding: 60px 30px;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.6s, transform 0.6s;
+        }
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .about {
+            text-align: center;
+        }
+        .about-heading {
+            font-size: 32px;
+            margin-bottom: 20px;
             color: #10B981;
         }
-        .testimonial {
+        .services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            justify-items: center;
+        }
+        .service-card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            backdrop-filter: blur(20px);
+            transition: transform 0.3s;
+        }
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+        .service-icon {
+            font-size: 40px;
+            color: #10B981;
+            margin-bottom: 10px;
+        }
+        .service-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .testimonials {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            justify-items: center;
+        }
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 20px;
+            backdrop-filter: blur(20px);
+            position: relative;
+            text-align: left;
+        }
+        .testimonial-avatar {
+            background-color: #10B981;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: #0A0A0B;
+            position: absolute;
+            top: -25px;
+            left: 20px;
+        }
+        .pricing {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .pricing-card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 30px;
+            width: 300px;
+            text-align: center;
+            backdrop-filter: blur(20px);
+        }
+        .pricing-title {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #10B981;
+        }
+        .pricing-price {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+        .pricing-features {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            margin-bottom: 15px;
+        }
+        .pricing-feature {
+            margin: 5px 0;
+        }
+        .contact-form {
             display: flex;
             flex-direction: column;
             align-items: center;
-            text-align: center;
         }
-        .testimonial-avatar {
-            background: #10B981;
-            color: #fff;
-            width: 60px;
-            height: 60px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 50%;
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
-        .cta-banner {
-            background: linear-gradient(45deg, #10B981, #10B981aa);
-            padding: 40px 20px;
-            text-align: center;
-            color: #fff;
-        }
-        .cta-banner input[type="email"] {
+        .contact-input, .contact-textarea {
+            width: 100%;
+            max-width: 500px;
+            margin-bottom: 15px;
             padding: 10px;
-            border-radius: 5px;
-            border: none;
-            margin-right: 10px;
-            width: 250px;
+            border-radius: 4px;
+            border: 1px solid #10B981;
+            background-color: transparent;
+            color: #FFFFFF;
         }
-        .cta-banner button {
-            padding: 10px 20px;
-            border-radius: 5px;
-            border: none;
-            background: #fff;
-            color: #10B981;
-            cursor: pointer;
+        .contact-textarea {
+            height: 100px;
         }
         .footer {
-            padding: 20px;
-            background: #0A0A0B;
-            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.04);
             border-top: 1px solid rgba(255, 255, 255, 0.08);
         }
-        .footer a {
+        .footer-logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #10B981;
+            margin-bottom: 10px;
+        }
+        .footer-tagline {
+            margin-bottom: 20px;
+        }
+        .footer-nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .footer-nav a {
             color: #10B981;
             text-decoration: none;
-            margin: 0 10px;
+            transition: color 0.3s;
+        }
+        .footer-nav a:hover {
+            color: #0E8F6C;
+        }
+        .footer-social {
+            display: flex;
+            gap: 10px;
+        }
+        .footer-social a {
+            color: #10B981;
+            font-size: 20px;
+            transition: color 0.3s;
+        }
+        .footer-social a:hover {
+            color: #0E8F6C;
+        }
+        .footer-copyright {
+            margin-top: 20px;
+            font-size: 14px;
+        }
+        .glowing-cursor {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background-color: #10B981;
+            pointer-events: none;
+            mix-blend-mode: difference;
+            z-index: 1001;
         }
     </style>
 </head>
 <body>
-    <div class="navbar">
+    <div class="glowing-cursor"></div>
+    <nav class="navbar">
         <div class="navbar-logo">EduLang AI</div>
-        <a href="#cta" class="btn-primary">Get Early Access</a>
-    </div>
-    <div class="hero">
-        <h1>Regional Language Focus and AI-Powered Explanations</h1>
-        <p>Break through language barriers with EduLang AI, the educational platform designed for Tier 2/3 students.</p>
+        <button class="cta-button">Get Early Access</button>
+    </nav>
+    <section class="hero">
+        <h1 class="hero-heading">EduLang AI - AI-Powered Explanations in Your Language</h1>
+        <div class="hero-buttons">
+            <button class="cta-button">Start Free Trial</button>
+            <button class="cta-button">Learn More</button>
+        </div>
         <div class="trust-badges">
-            <div class="trust-badge"><i class="fas fa-check-circle"></i> Trusted by 1000+ students</div>
-            <div class="trust-badge"><i class="fas fa-check-circle"></i> Available in multiple languages</div>
-            <div class="trust-badge"><i class="fas fa-check-circle"></i> Easy to use</div>
+            <span class="trust-badge">AI-Powered</span>
+            <span class="trust-badge">Regional Languages</span>
+            <span class="trust-badge">Freemium Model</span>
         </div>
-    </div>
-    <div class="section">
-        <div class="card card-dark">
-            <h2>The Problem</h2>
-            <p>Many students in Tier 2/3 cities struggle to understand educational content due to language barriers.</p>
+        <div class="hero-blob"></div>
+    </section>
+    <section class="about section">
+        <h2 class="about-heading">Who We Are</h2>
+        <p>EduLang AI is revolutionizing education for Tier 2/3 students by breaking language barriers. Our AI-powered platform delivers explanations in Marathi, Hindi, Urdu, and simple English, ensuring every student has access to quality education.</p>
+    </section>
+    <section class="services section">
+        <div class="service-card">
+            <i class="fas fa-upload service-icon"></i>
+            <h3 class="service-title">Upload Question</h3>
+            <p>Submit your educational queries directly on our platform for comprehensive AI-powered explanations.</p>
         </div>
-        <div class="card card-glow">
-            <h2>The Solution</h2>
-            <p>EduLang AI provides AI-powered explanations in regional languages, making learning accessible to everyone.</p>
+        <div class="service-card">
+            <i class="fas fa-language service-icon"></i>
+            <h3 class="service-title">Multilingual Support</h3>
+            <p>Get explanations in Marathi, Hindi, Urdu, and simple English for better understanding.</p>
         </div>
-    </div>
-    <div class="section features-grid">
-        <div class="card">
-            <div class="feature-icon">📄</div>
-            <h3>Upload Question</h3>
-            <p>Simply upload your question and get answers in your preferred language.</p>
+        <div class="service-card">
+            <i class="fas fa-brain service-icon"></i>
+            <h3 class="service-title">AI Explanations</h3>
+            <p>Experience advanced AI-driven insights and explanations tailored to your educational needs.</p>
         </div>
-        <div class="card">
-            <div class="feature-icon">🤖</div>
-            <h3>AI Explanations</h3>
-            <p>Get detailed explanations powered by AI in multiple languages.</p>
+    </section>
+    <section class="testimonials section">
+        <div class="testimonial-card">
+            <div class="testimonial-avatar">AB</div>
+            <p><strong>Amit Bhardwaj</strong>, Student</p>
+            <p>"EduLang AI has made learning accessible and understandable in my native language. It's a game changer!"</p>
         </div>
-        <div class="card">
-            <div class="feature-icon">🌐</div>
-            <h3>Multiple Languages</h3>
-            <p>Supports Marathi, Hindi, Urdu, and simple English.</p>
+        <div class="testimonial-card">
+            <div class="testimonial-avatar">RK</div>
+            <p><strong>Riya Khan</strong>, Parent</p>
+            <p>"Finally, an educational platform that understands the importance of regional languages. My child loves it!"</p>
         </div>
-        <div class="card">
-            <div class="feature-icon">💡</div>
-            <h3>Simple Interface</h3>
-            <p>Easy-to-use interface designed for seamless learning.</p>
+        <div class="testimonial-card">
+            <div class="testimonial-avatar">MK</div>
+            <p><strong>Mohammed Karim</strong>, Teacher</p>
+            <p>"EduLang AI bridges the gap between students and understanding complex educational concepts in their language."</p>
         </div>
-        <div class="card">
-            <div class="feature-icon">🔍</div>
-            <h3>Search Functionality</h3>
-            <p>Find the answers to your questions quickly and efficiently.</p>
+    </section>
+    <section class="pricing section">
+        <div class="pricing-card">
+            <h3 class="pricing-title">Free Tier</h3>
+            <p class="pricing-price">₹0/month</p>
+            <ul class="pricing-features">
+                <li class="pricing-feature">Upload 10 questions/month</li>
+                <li class="pricing-feature">Basic AI explanations</li>
+                <li class="pricing-feature">Support in 2 languages</li>
+            </ul>
+            <button class="cta-button">Get Started</button>
         </div>
-        <div class="card">
-            <div class="feature-icon">📈</div>
-            <h3>Progress Tracking</h3>
-            <p>Track your learning progress and improve over time.</p>
+        <div class="pricing-card">
+            <h3 class="pricing-title">Premium Tier</h3>
+            <p class="pricing-price">₹149/month</p>
+            <ul class="pricing-features">
+                <li class="pricing-feature">Unlimited questions</li>
+                <li class="pricing-feature">Advanced AI explanations</li>
+                <li class="pricing-feature">Support in all languages</li>
+                <li class="pricing-feature">Priority support</li>
+            </ul>
+            <button class="cta-button">Upgrade Now</button>
         </div>
-    </div>
-    <div class="section">
-        <h2>What Our Users Say</h2>
-        <div class="features-grid">
-            <div class="testimonial">
-                <div class="testimonial-avatar">JS</div>
-                <h3>Jyoti Sharma</h3>
-                <p>Student</p>
-                <blockquote>"EduLang AI has made learning so much easier for me. I can now understand complex topics in my own language."</blockquote>
-            </div>
-            <div class="testimonial">
-                <div class="testimonial-avatar">RA</div>
-                <h3>Rahul Agarwal</h3>
-                <p>Parent</p>
-                <blockquote>"I am impressed with how EduLang AI supports my child's education with regional language explanations."</blockquote>
-            </div>
-            <div class="testimonial">
-                <div class="testimonial-avatar">SK</div>
-                <h3>Sunita K.</h3>
-                <p>Teacher</p>
-                <blockquote>"The platform is a game-changer for students who struggle with language barriers. A must-have tool for educators."</blockquote>
-            </div>
-        </div>
-    </div>
-    <div id="cta" class="cta-banner">
-        <h2>Be the First to Experience EduLang AI</h2>
-        <p>Join our early access program and start learning today.</p>
-        <input type="email" placeholder="Enter your email">
-        <button>Get Early Access</button>
-    </div>
-    <div class="footer">
-        <div class="navbar-logo">EduLang AI</div>
-        <div>
+    </section>
+    <section class="contact-form section">
+        <h2 class="about-heading">Contact Us</h2>
+        <form>
+            <input type="text" class="contact-input" placeholder="Your Name" required>
+            <input type="email" class="contact-input" placeholder="Your Email" required>
+            <textarea class="contact-textarea" placeholder="Your Message" required></textarea>
+            <button type="submit" class="cta-button">Send Message</button>
+        </form>
+    </section>
+    <footer class="footer">
+        <div class="footer-logo">EduLang AI</div>
+        <p class="footer-tagline">AI-Powered Learning for Everyone</p>
+        <nav class="footer-nav">
             <a href="#">Home</a>
-            <a href="#">Features</a>
+            <a href="#">About</a>
+            <a href="#">Services</a>
+            <a href="#">Pricing</a>
             <a href="#">Contact</a>
-            <a href="#">Privacy Policy</a>
+        </nav>
+        <div class="footer-social">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
         </div>
-    </div>
+        <p class="footer-copyright">&copy; 2023 EduLang AI. All rights reserved.</p>
+    </footer>
+    <script>
+        const sections = document.querySelectorAll('.section');
+        const options = { threshold: 0.1 };
+        
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, options);
+        
+        sections.forEach(section => observer.observe(section));
+
+        const cursor = document.querySelector('.glowing-cursor');
+        document.addEventListener('mousemove', e => {
+            cursor.style.left = e.pageX + 'px';
+            cursor.style.top = e.pageY + 'px';
+        });
+    </script>
 </body>
 </html>
