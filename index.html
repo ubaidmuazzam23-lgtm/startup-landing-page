@@ -3,220 +3,203 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Startup - The Next Big Thing</title>
+    <title>My Startup - The next big thing</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         body {
             font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f0f4f8;
+            line-height: 1.6;
+            background: #f0f4f8;
             color: #333;
         }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
         header {
+            background: rgba(16, 185, 129, 0.25);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 2rem;
-            background-color: #fff;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 1rem 0;
         }
-        header .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #6366f1;
-        }
-        header .cta {
-            background-color: #6366f1;
-            color: #fff;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
+        nav a {
+            color: #10B981;
             text-decoration: none;
+            font-weight: bold;
+        }
+        .cta-button {
+            background-color: #10B981;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        .cta-button:hover {
+            background-color: #0e8f6f;
         }
         .hero {
             text-align: center;
-            padding: 4rem 2rem;
-            background: linear-gradient(135deg, #6366f1, #a5b4fc);
-            color: #fff;
+            padding: 4rem 0;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), transparent);
         }
         .hero h1 {
             font-size: 2.5rem;
-            margin-bottom: 1rem;
+            color: #10B981;
         }
         .hero p {
             font-size: 1.2rem;
             margin-bottom: 2rem;
         }
-        .hero .cta {
-            background-color: #fff;
-            color: #6366f1;
-            padding: 0.75rem 1.5rem;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
-        }
         .section {
-            padding: 3rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
+            padding: 3rem 0;
         }
-        .problem-solution {
+        .flex {
             display: flex;
-            flex-direction: column;
-            gap: 2rem;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
         }
-        .problem-solution div {
-            background-color: rgba(255, 255, 255, 0.8);
-            padding: 1.5rem;
-            border-radius: 10px;
+        .feature, .problem-solution {
+            flex: 1 1 300px;
+            margin: 1rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 12px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        .feature {
-            background-color: rgba(255, 255, 255, 0.8);
-            padding: 1.5rem;
-            border-radius: 10px;
             text-align: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-        .feature i {
+        .feature i, .problem-solution i {
             font-size: 2rem;
-            color: #6366f1;
+            color: #10B981;
             margin-bottom: 1rem;
         }
         .testimonials {
+            background: rgba(16, 185, 129, 0.1);
+            padding: 2rem;
+            border-radius: 12px;
             text-align: center;
-            margin-top: 2rem;
         }
         .testimonials p {
-            font-style: italic;
-            color: #555;
+            margin-bottom: 1rem;
         }
-        .signup {
-            text-align: center;
-            background-color: #6366f1;
-            color: #fff;
+        .email-signup {
+            background: #10B981;
+            color: white;
             padding: 2rem;
-            border-radius: 10px;
-            margin-top: 3rem;
-        }
-        .signup input[type="email"] {
-            padding: 0.5rem;
-            margin-right: 0.5rem;
-            border: none;
-            border-radius: 5px;
-            width: 200px;
-        }
-        .signup button {
-            background-color: #fff;
-            color: #6366f1;
-            padding: 0.5rem 1rem;
-            border: none;
-            border-radius: 5px;
-            font-weight: bold;
+            text-align: center;
+            border-radius: 12px;
         }
         footer {
+            background: #333;
+            color: white;
             text-align: center;
             padding: 1rem;
-            background-color: #fff;
-            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
-            margin-top: 3rem;
         }
-        @media (min-width: 768px) {
-            .problem-solution {
-                flex-direction: row;
-                justify-content: space-between;
+        @media (max-width: 768px) {
+            .flex {
+                flex-direction: column;
             }
         }
     </style>
 </head>
 <body>
     <header>
-        <div class="logo">My Startup</div>
-        <a href="#signup" class="cta">Get Early Access</a>
+        <div class="container">
+            <nav>
+                <a href="#">My Startup</a>
+                <a href="#get-access" class="cta-button">Get Early Access</a>
+            </nav>
+        </div>
     </header>
+
     <section class="hero">
-        <h1>The Next Big Thing</h1>
-        <p>Empowering students with industry-ready AI and tech skills.</p>
-        <a href="#signup" class="cta">Get Early Access</a>
-    </section>
-    <section class="section problem-solution">
-        <div>
-            <h2>Problem</h2>
-            <p>Many engineering and diploma students lack the industry-ready AI and tech skills needed to thrive in today's competitive job market.</p>
-        </div>
-        <div>
-            <h2>Solution</h2>
-            <p>Our online academy provides comprehensive AI and tech skills training through recorded courses and hands-on real-world projects.</p>
+        <div class="container">
+            <h1>The Next Big Thing</h1>
+            <p>An AI-powered platform that explains questions in regional languages, including Marathi, Hindi, Urdu, and simple English.</p>
+            <a href="#get-access" class="cta-button">Get Early Access</a>
         </div>
     </section>
-    <section class="section features">
-        <div class="feature">
-            <i class="fas fa-brain"></i>
-            <h3>AI Fundamentals</h3>
-        </div>
-        <div class="feature">
-            <i class="fas fa-code"></i>
-            <h3>Python for Beginners</h3>
-        </div>
-        <div class="feature">
-            <i class="fas fa-cogs"></i>
-            <h3>DSA Mastery</h3>
-        </div>
-        <div class="feature">
-            <i class="fas fa-project-diagram"></i>
-            <h3>AI Project Bootcamp</h3>
-        </div>
-        <div class="feature">
-            <i class="fas fa-tasks"></i>
-            <h3>Real-world projects</h3>
-        </div>
-        <div class="feature">
-            <i class="fas fa-lightbulb"></i>
-            <h3>Startup mindset</h3>
+
+    <section class="section">
+        <div class="container flex">
+            <div class="problem-solution">
+                <i class="fas fa-exclamation-circle"></i>
+                <h2>The Problem</h2>
+                <p>Difficulty in understanding educational concepts for Tier 2/3 students due to language barriers.</p>
+            </div>
+            <div class="problem-solution">
+                <i class="fas fa-lightbulb"></i>
+                <h2>The Solution</h2>
+                <p>An AI-powered platform that provides explanations in Marathi, Hindi, Urdu, and simple English.</p>
+            </div>
         </div>
     </section>
+
+    <section class="section">
+        <div class="container flex">
+            <div class="feature">
+                <i class="fas fa-upload"></i>
+                <h3>Upload Question</h3>
+                <p>Simply upload the question you need help with.</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-language"></i>
+                <h3>AI Explanations</h3>
+                <p>Get explanations in multiple languages: Marathi, Hindi, Urdu, and simple English.</p>
+            </div>
+        </div>
+    </section>
+
     <section class="section testimonials">
-        <h2>Testimonials</h2>
-        <p>"This academy transformed my skills and prepared me for the tech industry!"</p>
+        <div class="container">
+            <h2>Testimonials</h2>
+            <p>What our early users say about us.</p>
+            <p><em>“This platform has made learning so much easier for me in my native language!”</em></p>
+            <p><em>“I can finally understand complex topics without language being a barrier.”</em></p>
+        </div>
     </section>
-    <section id="signup" class="section signup">
-        <h2>Get Early Access</h2>
-        <p>Sign up to be the first to access our courses and projects.</p>
-        <form>
-            <input type="email" placeholder="Enter your email" required>
-            <button type="submit">Sign Up</button>
-        </form>
+
+    <section class="section email-signup" id="get-access">
+        <div class="container">
+            <h2>Get Early Access</h2>
+            <p>Sign up now to be among the first to experience our platform.</p>
+            <form>
+                <input type="email" placeholder="Enter your email" required style="padding: 0.5rem; border-radius: 25px; border: none; width: 70%; max-width: 300px;">
+                <button type="submit" class="cta-button" style="margin-top: 1rem;">Sign Up</button>
+            </form>
+        </div>
     </section>
+
     <footer>
         <p>&copy; 2023 My Startup. All rights reserved.</p>
     </footer>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const options = {
-                threshold: 0.1
-            };
-            const observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = 1;
-                        entry.target.style.transform = "translateY(0)";
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, options);
 
-            document.querySelectorAll('.section').forEach(section => {
-                section.style.opacity = 0;
-                section.style.transform = "translateY(50px)";
-                observer.observe(section);
+    <script>
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
             });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.section, .hero').forEach(section => {
+            section.style.opacity = 0;
+            section.style.transform = 'translateY(20px)';
+            observer.observe(section);
         });
     </script>
 </body>
